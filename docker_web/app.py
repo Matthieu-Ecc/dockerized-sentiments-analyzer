@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+import requests
 
 app = Flask(__name__)
 
@@ -11,7 +12,9 @@ def form():
 def analyse():
     text_to_analyse = request.form['text']
     #final = Appeler l'autre docker pour inferer
-    return text_to_analyse
+    api_url = "vader-server?sentence="
+    response = requests.get(api_url+text_to_analyse)
+    return format(response)
 
 
 if __name__ == "__main__":

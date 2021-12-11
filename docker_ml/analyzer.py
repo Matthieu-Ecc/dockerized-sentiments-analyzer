@@ -28,19 +28,22 @@ def sentiment_scores(sentence):
     # decide sentiment as positive, negative and neutral
     if sentiment_dict['compound'] >= 0.05 :
         print("Positive")
+        return "Positive"
     elif sentiment_dict['compound'] <= - 0.05 :
         print("Negative")
+        return "Negative"
     else :
         print("Neutral")
+        return "Neutral"
 
 
-while(True):
+# while(True):
 
-    sentence = input('write a sentence for analyse \n')
+#     sentence = input('write a sentence for analyse \n')
 
-    sentiment_scores(sentence)
+#     sentiment_scores(sentence)
 
-    choice = input('do you want to continue y/n \n')
+#     choice = input('do you want to continue y/n \n')
 
-    if choice != 'y':
-        break
+#     if choice != 'y':
+#         break
