@@ -1,0 +1,13 @@
+version: "3"
+services:
+  vader-server:
+    build: docker_ml/.
+    container_name: vader
+    
+
+  flask-server:
+    build: docker_web/.
+    container_name: web
+    ports:
+      - "5000:5000"
+
