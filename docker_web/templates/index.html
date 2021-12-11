@@ -1,20 +1,27 @@
 <html>
+
+
+
     <head>
+
 	<style>
         table, th, td {border: 1px solid black;}
     </style>
 
         <title>{{ title }} Sentiment Analysis</title>
+
     </head>
 
+
+
     <body>
+
         <h1>Sentiment Analyser</h1>
         <h3> The web container as been succesfully created and you reached it </h3>
         
-        <form action="analyse" method="POST">
-            <textarea name="text" placeholder="Please wright the sentence you want to be analyse" rows="10" cols="100"></textarea>
-            <br><br>
-            <input type="submit" value="Analyse">
+        <form method="POST">
+            <textarea name="text" placeholder="Please wright the sentence you want to be analyse" rows="10" cols="100"></textarea><br><br>
+            <input class="example_a" type="submit" value="Analyse">
         </form>
 
         {% if final %} <!-- We print this part only if we already have a response -->
@@ -25,5 +32,9 @@
             <p></p>
             {% endif %}
         </div>
+
     </body>
+
+
+
 </html>
