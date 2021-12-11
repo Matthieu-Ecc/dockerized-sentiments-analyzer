@@ -1,2 +1,1 @@
-flask==1.1.2
-numpy==1.19.5
+vaderSentiment==3.3.2

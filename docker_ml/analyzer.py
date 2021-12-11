@@ -2,6 +2,17 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # function to print sentiments
 # of the sentence.
+
+# import sys
+
+# input = sys.argv
+
+# input[0]=""
+
+# sentence = " ".join(input)
+
+
+
 def sentiment_scores(sentence):
 # Create a SentimentIntensityAnalyzer object.
     sid_obj = SentimentIntensityAnalyzer()
@@ -23,4 +34,13 @@ def sentiment_scores(sentence):
         print("Neutral")
 
 
-sentiment_scores("I love my mom, because she mahe excelent scrumble's eggs and delicious apple pies.")
+while(True):
+
+    sentence = input('write a sentence for analyse \n')
+
+    sentiment_scores(sentence)
+
+    choice = input('do you want to continue y/n \n')
+
+    if choice != 'y':
+        break
