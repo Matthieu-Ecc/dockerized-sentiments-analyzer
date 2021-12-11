@@ -1,20 +1,16 @@
-import flask
-#import numpy as np
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-
 @app.route('/')
-def hello():
-    return "hello to my flask app, to test the mean function copy/paste this in tour webrowser\n " \
-           "localhost:5000/mean?list=1&list=2&list=3&list=4 "
+def my_form():
+    return render_template('index.html')
 
 
 @app.route("/askSentiments", methods = ['POST','GET'])
 def askSentiments():
     if request.method == 'POST':
-        studentName = request.form['studentName']
+        student_name = request.form['student_name']
         website = request.form.get('website')
         return 'Submitted!'
         return '''<form method = "post">

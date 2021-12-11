@@ -1,35 +1,29 @@
-{% extends 'bootstrap/base.html' %}
-{% import "bootstrap/wtf.html" as wtf %}
-
-{% block styles %}
-{{ super() }}
+<html>
+    <head>
 	<style>
-		body { background: #e8f1f9; }
-	</style>
-{% endblock %}
+        table, th, td {border: 1px solid black;}
+    </style>
 
+        <title>{{ title }} Sentiment Analysis</title>
+    </head>
 
-{% block title %}
-Ask the sentiments of your sentence
-{% endblock %}
+    <body>
+        <h1>Sentiment Analyser</h1>
+        <h3> The web container as been succesfully created and you reached it </h3>
+        
+        <form action="analyse" method="POST">
+            <textarea name="text" placeholder="Please wright the sentence you want to be analyse" rows="10" cols="100"></textarea>
+            <br><br>
+            <input type="submit" value="Analyse">
+        </form>
 
-
-{% block content %}
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
-
-      <h1 class="pt-5 pb-2">Welcome to the best sentiments analyzer Flask example!</h1>
-
-      <p class="lead">This is the index page for an example Flask app using Bootstrap and WTForms.</p>
-
-      {{ wtf.quick_form(form) }}
-
-      <p class="pt-5"><strong>{{ message }}</strong></p>
-
-    </div>
-  </div>
-</div>
-
-{% endblock %}
+        {% if final %} <!-- We print this part only if we already have a response -->
+        <div>
+            <h3>Your sentence : </h3>'{{ text }}'
+            <h2> The sentiment is  {{ final *100}}% positive !</h2>
+            {% else %}
+            <p></p>
+            {% endif %}
+        </div>
+    </body>
+</html>
