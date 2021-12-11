@@ -4,7 +4,7 @@ services:
     build: docker_ml/.
     container_name: vader
     ports:
-      - "80:80"
+      - "80:5000"
 
   flask-server:
     build: docker_web/.
