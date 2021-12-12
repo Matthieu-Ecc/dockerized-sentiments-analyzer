@@ -13,10 +13,10 @@ def form():
 @app.route('/', methods=['POST'])
 def analyse():
     text_to_analyse = request.form['text']
-    #final = Appeler l'autre docker pour inferer
     api_url = "http://vader:5000/?data=" + text_to_analyse
     response = requests.get(api_url)
-    return response.text
+    json_response = response.json()
+    return render_template('index.html', final = json_response['sentiment'], text=text_to_analyse)
 
 if __name__ == "__main__":
     app.run(debug=True)

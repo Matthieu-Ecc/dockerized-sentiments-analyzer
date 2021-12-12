@@ -26,8 +26,8 @@
 
         {% if final %} <!-- We print this part only if we already have a response -->
         <div>
-            <h3>Your sentence : </h3>'{{ text }}'
-            <h2> The sentiment is  {{ final *100}}% positive !</h2>
+            <h3>Your sentence : </h3>{{ text }}
+            <h3> The sentiment is {{ final }} !</h3>
             {% else %}
             <p></p>
             {% endif %}
