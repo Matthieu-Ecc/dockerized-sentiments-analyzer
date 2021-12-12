@@ -14,7 +14,7 @@ def form():
 def analyse():
     text_to_analyse = request.form['text']
     #final = Appeler l'autre docker pour inferer
-    api_url = "http://vader:5000"
+    api_url = "http://vader:5000/?data="+text_to_analyse
     response = requests.get(api_url)
     return response.text
 
