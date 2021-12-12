@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template
 import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 app = Flask(__name__)
 
@@ -12,10 +14,9 @@ def form():
 def analyse():
     text_to_analyse = request.form['text']
     #final = Appeler l'autre docker pour inferer
-    api_url = "vader-server?sentence="
-    response = requests.get(api_url+text_to_analyse)
+    api_url = "http://vader:5000"
+    response = requests.get(api_url)
     return format(response)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
