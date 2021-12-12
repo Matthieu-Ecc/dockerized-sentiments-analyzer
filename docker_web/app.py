@@ -16,7 +16,7 @@ def analyse():
     #final = Appeler l'autre docker pour inferer
     api_url = "http://vader:5000"
     response = requests.get(api_url)
-    return format(response)
+    return response.text
 
 if __name__ == "__main__":
     app.run(debug=True)
