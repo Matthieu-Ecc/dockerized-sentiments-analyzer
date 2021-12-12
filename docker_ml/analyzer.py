@@ -19,22 +19,22 @@ def sentiment_scores(sentence):
 # polarity_scores method of SentimentIntensityAnalyzer
 # oject gives a sentiment dictionary.
 # which contains pos, neg, neu, and compound scores.
+
     sentiment_dict = sid_obj.polarity_scores(sentence)
-    print("Overall sentiment dictionary is : ", sentiment_dict)
-    print("sentence was rated as ", sentiment_dict['neg']*100, "% Negative")
-    print("sentence was rated as ", sentiment_dict['neu']*100, "% Neutral")
-    print("sentence was rated as ", sentiment_dict['pos']*100, "% Positive")
-    print("Sentence Overall Rated As", end = " ")
+    negative = ""+sentiment_dict['neg']*100 + "% Negative"
+    neutral = ""+sentiment_dict['neu']*100 + "% Neutral"
+    positive = ""+sentiment_dict['pos']*100 + "% Positive"
+
     # decide sentiment as positive, negative and neutral
     if sentiment_dict['compound'] >= 0.05 :
         print("Positive")
-        return "Positive"
+        return "Positive" , negative, neutral, positive
     elif sentiment_dict['compound'] <= - 0.05 :
         print("Negative")
-        return "Negative"
+        return "Negative" , negative, neutral, positive
     else :
         print("Neutral")
-        return "Neutral"
+        return "Neutral", negative, neutral, positive
 
 
 # while(True):
