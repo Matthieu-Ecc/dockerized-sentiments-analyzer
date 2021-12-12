@@ -16,7 +16,7 @@ def analyse():
     api_url = "http://vader:5000/?data=" + text_to_analyse
     response = requests.get(api_url)
     json_response = response.json()
-    return render_template('index.html', final = json_response['sentiment'], text=text_to_analyse)
+    return render_template('index.html', final = json_response['sentiment'], text = json_response['sentence'], neg = json_response['neg'], neut = json_response['neut'], pos = json_response['pos'])
 
 if __name__ == "__main__":
     app.run(debug=True)

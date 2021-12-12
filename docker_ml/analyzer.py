@@ -21,9 +21,10 @@ def sentiment_scores(sentence):
 # which contains pos, neg, neu, and compound scores.
 
     sentiment_dict = sid_obj.polarity_scores(sentence)
-    negative = ""+sentiment_dict['neg']*100 + "% Negative"
-    neutral = ""+sentiment_dict['neu']*100 + "% Neutral"
-    positive = ""+sentiment_dict['pos']*100 + "% Positive"
+    negative = "Negative : " + str(sentiment_dict['neg']*100) + "%"
+    neutral =  "Neutral : " + str(sentiment_dict['neu']*100) + "%"
+    positive = "Positive : " + str(sentiment_dict['pos']*100) + "%"
+
 
     # decide sentiment as positive, negative and neutral
     if sentiment_dict['compound'] >= 0.05 :

@@ -9,7 +9,7 @@ class HelloWorld(Resource):
     def get(self):
         sentence = request.args.get("data")
         sentiment = sentiment_scores(sentence)
-        return {'sentence': sentence, 'sentiment' : sentiment } 
+        return {'sentence': sentence, 'sentiment' : sentiment[0] , 'neg' : sentiment[1], 'neut' : sentiment[2], 'pos' : sentiment[3]}
 
 api.add_resource(HelloWorld, '/')
 
