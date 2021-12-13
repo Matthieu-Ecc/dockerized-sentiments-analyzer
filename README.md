@@ -24,20 +24,20 @@ Instructor: **Khodor Hammoud**.
 
 ## Project architecture :
 
-- dockerized-sentiments-analyzer : this is the root directory of the project
-  - docker-ml : folder containing the actual sentiment analyzer script with a function which, given a piece of text, replies with its sentiment & 
+- __dockerized-sentiments-analyzer : this is the root directory of the project__
+  - `docker-ml : folder containing the actual sentiment analyzer script with a function which, given a piece of text, replies with its sentiment`
     - analyzer.py : actual sentiment analyzer script
     - vader_API.py : Flask REST Api application that runs the sentiment analyzer script and return the sentiment throught a GET request
     - requirements.txt : dependencies
     - Dockerfile : Dockerfile to build & run the image
-  - docker_web  : contains the flask web application 
+  - `docker_web  : contains the flask web application`
     - app.py : Flask application (the base route display the form & the /data call the Vader Api with the piece of text 
     - routes.py : definition of the different routes of the Flask Application 
     - requirements.txt : dependencies
     - Dockerfile : Dockerfile to build & run the image
     - templates : folder containing the index.html file
-  - docker-compose.yaml : requirements of the docker-compose
-  - test_app.py : test of the model & the web service 
+  - `docker-compose.yaml : requirements of the docker-compose`
+  - `test_app.py : test of the model & the web service`
 
 
 ### 2 microservices :
