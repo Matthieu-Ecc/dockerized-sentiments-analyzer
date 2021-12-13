@@ -1,38 +1,31 @@
-from flask import Flask, render_template, redirect, url_for
-from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
+import pytest
+import time
+from flask import Flask
+from routes import configure_routes
+import requests
 
-app = Flask(__name__)
+def test_base_route():
+    app = Flask(__name__)
+    configure_routes(app)
+    client = app.test_client()
+    url = '/'
 
-# Flask-WTF requires an encryption key - the string can be anything
-app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
+    response = client.get(url)
+    assert response.status_code == 200
 
-# Flask-Bootstrap requires this line
-Bootstrap(app)
+def test_sentiment():
+    app = Flask(__name__)
+	api = Api(app)
 
-class sentimentsForm(FlaskForm):
-    sentence = StringField('Which sentiments is dominants in this sentence ?', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+	class HelloWorld(Resource):
+	    def get(self):
+	        sentence = request.args.get("data")
+	        sentiment = sentiment_scores(sentence)
+	        return {'sentence': sentence, 'sentiment' : sentiment[0] , 'neg' : sentiment[1], 'neut' : sentiment[2], 'pos' : sentiment[3]}
 
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    sentence = ""
-    # you must tell the variable 'form' what you named the class, above
-    # 'form' is the variable name used in this template: index.html
-    form = sentimentsForm()
-    message = ""
-    # names= ""
-    # if form.validate_on_submit():
-    #     sentence = form.sentence.data
-    #     if sentence.lower() in names:
-    #         # empty the form field
-    #         form.name.data = ""
-    #         id = get_id(ACTORS, name)
-    #         # redirect the browser to another route and template
-    #         return redirect( url_for('actor', id=id) )
-    #     else:
-    #         message = "That actor is not in our database."
-    # return render_template('index.html', names=names, form=form, message=message)
+	api.add_resource(HelloWorld, '/')
+    client = app.test_client()
+    url = 'http://vader:5000/?data=This%20was%20the%20worst%20movie%20ever'
+    response = client.get(url)
+    json_response = response.json()
+    assert response.get_data() == json_response
