@@ -9,10 +9,10 @@ def configure_routes(app):
 	    return render_template('index.html')
 
 
-	@app.route('/data', methods=['POST'])
+	@app.route('/', methods=['POST'])
 	def analyse():
 	    text_to_analyse = request.form['text']
-	    api_url = "http://vader:5000/data=" + text_to_analyse
+	    api_url = "http://vader:5000/?data=" + text_to_analyse
 	    response = requests.get(api_url)
 	    json_response = response.json()
 	    return render_template('index.html', final = json_response['sentiment'], text = json_response['sentence'], neg = json_response['neg'], neut = json_response['neut'], pos = json_response['pos'])

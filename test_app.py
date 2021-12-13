@@ -1,10 +1,10 @@
 import pytest
 import time
 from flask import Flask, request
-from routes import configure_routes
+from docker_web.routes import configure_routes
 import requests
 from flask_restful import Resource, Api
-from analyzer import sentiment_scores
+from docker_ml.analyzer import sentiment_scores
 
 
 def test_base_route():
