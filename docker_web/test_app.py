@@ -1,8 +1,11 @@
 import pytest
 import time
-from flask import Flask
+from flask import Flask, request
 from routes import configure_routes
 import requests
+from flask_restful import Resource, Api
+from analyzer import sentiment_scores
+
 
 def test_base_route():
     app = Flask(__name__)
@@ -15,17 +18,16 @@ def test_base_route():
 
 def test_sentiment():
     app = Flask(__name__)
-	api = Api(app)
+    api = Api(app)
+    class HelloWorld(Resource):
+        def get(self):
+            sentence = request.args.get("data")
+            sentiment = sentiment_scores(sentence)
+            return {'sentence': sentence, 'sentiment' : sentiment[0] , 'neg' : sentiment[1], 'neut' : sentiment[2], 'pos' : sentiment[3]}
 
-	class HelloWorld(Resource):
-	    def get(self):
-	        sentence = request.args.get("data")
-	        sentiment = sentiment_scores(sentence)
-	        return {'sentence': sentence, 'sentiment' : sentiment[0] , 'neg' : sentiment[1], 'neut' : sentiment[2], 'pos' : sentiment[3]}
-
-	api.add_resource(HelloWorld, '/')
+    api.add_resource(HelloWorld, '/')
     client = app.test_client()
-    url = 'http://vader:5000/?data=This%20was%20the%20worst%20movie%20ever'
+
+    url = '/?data=This%20was%20the%20worst%20movie%20ever'
     response = client.get(url)
-    json_response = response.json()
-    assert response.get_data() == json_response
+    assert response.get_data()
