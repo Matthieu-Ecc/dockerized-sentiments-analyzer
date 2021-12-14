@@ -31,3 +31,7 @@ def test_sentiment():
     url = '/?data=This%20was%20the%20worst%20movie%20ever'
     response = client.get(url)
     assert response.get_data()
+
+
+def test_connection():
+    assert requests.get("http://localhost:5000").status_code == 200 , "web site is not up"
