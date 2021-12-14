@@ -2,12 +2,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
 def sentiment_scores(sentence):
-# Create a SentimentIntensityAnalyzer object.
     sid_obj = SentimentIntensityAnalyzer()
-# polarity_scores method of SentimentIntensityAnalyzer
-# oject gives a sentiment dictionary.
-# which contains pos, neg, neu, and compound scores.
-
     sentiment_dict = sid_obj.polarity_scores(sentence)
     negative = "Negative : " + str(sentiment_dict['neg']*100) + "%"
     neutral =  "Neutral : " + str(sentiment_dict['neu']*100) + "%"
@@ -24,15 +19,3 @@ def sentiment_scores(sentence):
     else :
         print("Neutral")
         return "Neutral", negative, neutral, positive
-
-
-# while(True):
-
-#     sentence = input('write a sentence for analyse \n')
-
-#     sentiment_scores(sentence)
-
-#     choice = input('do you want to continue y/n \n')
-
-#     if choice != 'y':
-#         break
